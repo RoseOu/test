@@ -3,3 +3,4 @@ venv3
 *.pyc
 data-dev.sqlite
 migrations
+__pycache__
