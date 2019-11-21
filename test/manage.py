@@ -33,11 +33,9 @@ from flask_migrate import Migrate, MigrateCommand
 from app import db, app
 from app.models import User, Role
 
-
 # 编码设置 python3
 import importlib
 importlib.reload(sys)
-
 
 manager = Manager(app)
 migrate = Migrate(app, db)
@@ -52,10 +50,8 @@ def make_shell_context():
         Role = Role
     )
 
-
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
-
 
 @manager.command
 def test():
@@ -63,7 +59,6 @@ def test():
     import unittest
     tests = unittest.TestLoader().discover('test')
     unittest.TextTestRunner(verbosity=2).run(tests)
-
 
 @manager.command
 def admin():
@@ -82,7 +77,6 @@ def admin():
     db.session.commit()
     print("<admin user %s add in database>" % username)
 
-
 @manager.command
 def adduser():
     """add user"""
@@ -100,7 +94,6 @@ def adduser():
     db.session.add(u)
     db.session.commit()
     print("<user %s add in database>" % username)
-
 
 if __name__ == '__main__':
     manager.run()
